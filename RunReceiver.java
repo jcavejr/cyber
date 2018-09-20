@@ -1,4 +1,3 @@
-import java.net.*;
 import java.io.*;
 
 class RunReceiver {
@@ -6,11 +5,10 @@ class RunReceiver {
         Receiver myReceiver = new Receiver();
         System.out.println(myReceiver);
         try {
-            Socket clientSocket = myReceiver.getConnection();
-            System.out.println("Connection established: " + clientSocket);
+            System.out.println(myReceiver.receiveObjectFromStream());
         } catch (IOException ex) {
-            System.err.println("Error: IOException occured when accepting connection.");
-            System.exit(1);
+            ex.printStackTrace();
+            System.exit(-1);
         }
     }
 }
