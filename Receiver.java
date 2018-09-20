@@ -23,11 +23,14 @@ public class Receiver {
         stream = new ObjectInputStream(connection.getInputStream());
     }
 
-    public Object receiveObjectFromStream() throws IOException {
+    public Object receiveObjectFromStream() {
         try {
             return stream.readObject();
         } catch (ClassNotFoundException ex) {
             System.err.println("Error: Class of invalid type received.");
+            System.exit(1);
+        } catch (IOException ex) {
+            ex.printStackTrace();
             System.exit(1);
         }
         return null;

@@ -15,8 +15,13 @@ public class Sender {
         }
     }
 
-    public void sendObjectToStream(Object obj) throws IOException {
-        stream.writeObject(obj);
+    public void sendObjectToStream(Object obj) {
+        try {
+            stream.writeObject(obj);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.exit(1);
+        }
     }
 
     private Socket openSocket() {
