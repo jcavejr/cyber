@@ -14,7 +14,7 @@ public class Receiver {
             System.out.println("Connection established: " + openSocket);
         } catch (IOException ex) {
             ex.printStackTrace();
-            System.exit(-1);
+            System.exit(1);
         }
     }
 

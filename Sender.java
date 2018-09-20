@@ -12,6 +12,7 @@ public class Sender {
             stream = new ObjectOutputStream(serverPort.getOutputStream());
         } catch (IOException ex) {
             ex.printStackTrace();
+            System.exit(1);
         }
     }
 
@@ -30,11 +31,9 @@ public class Sender {
             System.out.println(localHost);
             return new Socket(localHost, PORT_NUMBER);
         } catch (UnknownHostException ex) {
-            System.err.println("ERROR at getLocalHost");
             ex.printStackTrace();
             System.exit(1);
         } catch (IOException ex) {
-            System.err.println("ERROR at Socket");
             ex.printStackTrace();
             System.exit(1);
         }
