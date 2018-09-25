@@ -7,8 +7,8 @@ public class Sender {
     private ObjectOutputStream stream;
     private final int MAX_TRIES = 10;
 
-    public Sender(int portNumber) {
-        serverPort = openSocket(portNumber);
+    public Sender(String address, int portNumber) {
+        serverPort = openSocket(address, portNumber);
         try {
             stream = new ObjectOutputStream(serverPort.getOutputStream());
         } catch (IOException ex) {
@@ -26,14 +26,14 @@ public class Sender {
         }
     }
 
-    private Socket openSocket(int portNumber) {
+    private Socket openSocket(String address, int portNumber) {
         int tries = 0;
         while (tries < MAX_TRIES) {
             try {
                 System.out.println("Attempting to connect.. [" + tries + "/" + MAX_TRIES + "]");
-                InetAddress localHost = InetAddress.getLocalHost();
-                System.out.println(localHost);
-                return new Socket(localHost, portNumber);
+                InetAddress receiver = InetAddress.getByName(address);
+                System.out.println(receiver);
+                return new Socket(receiver, portNumber);
             } catch (UnknownHostException ex) {
                 ex.printStackTrace();
                 System.exit(1);
